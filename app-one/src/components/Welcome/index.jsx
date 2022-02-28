@@ -1,7 +1,6 @@
 import React from "react";
 import { useSelector, useDispatch } from "react-redux";
 const Button = React.lazy(() => import("APP_TWO/ButtonTwo"));
-import counterActions from "HOST/counterActions";
 
 export const Welcome = () => {
   const dispatch = useDispatch();
@@ -13,13 +12,17 @@ export const Welcome = () => {
       <Button
         title="Increment"
         onClick={() => {
-          dispatch(counterActions.increment());
+          import("HOST/counterActions").then(({ default: counterActions }) => {
+            dispatch(counterActions.increment());
+          });
         }}
       />
       <Button
         title="Decrement"
         onClick={() => {
-          dispatch(counterActions.decrement());
+          import("HOST/counterActions").then(({ default: counterActions }) => {
+            dispatch(counterActions.decrement());
+          });
         }}
       />
     </div>
