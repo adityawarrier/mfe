@@ -18,6 +18,10 @@ module.exports = {
     new ModuleFederationPlugin({
       name: "HOST",
       filename: "remoteEntry.js",
+      exposes: {
+        "./counterReducer": "./src/state/counter/index.js",
+        "./counterActions": "./src/state/counter/actions.js",
+      },
       remotes: {
         APP_TWO: "APP_TWO@http://localhost:4002/remoteEntry.js",
       },
@@ -27,6 +31,14 @@ module.exports = {
           react: { requiredVersion: deps.react, singleton: true },
           "react-dom": {
             requiredVersion: deps["react-dom"],
+            singleton: true,
+          },
+          "react-redux": {
+            requiredVersion: deps["react-redux"],
+            singleton: true,
+          },
+          "@reduxjs/toolkit": {
+            requiredVersion: deps["@reduxjs/toolkit"],
             singleton: true,
           },
         },
@@ -42,6 +54,7 @@ module.exports = {
     alias: {
       src: path.resolve(__dirname, "./src"),
       components: path.resolve(__dirname, "src/components/"),
+      state: path.resolve(__dirname, "src/state/"),
     },
   },
 

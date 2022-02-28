@@ -20,6 +20,24 @@ module.exports = {
   },
 
   plugins: [
+    new ModuleFederationPlugin({
+      name: "APP_ONE",
+      filename: "remoteEntry.js",
+      remotes: {
+        HOST: "HOST@http://localhost:4000/remoteEntry.js",
+        APP_TWO: "APP_TWO@http://localhost:4002/remoteEntry.js",
+      },
+      shared: [
+        {
+          ...deps,
+          react: { requiredVersion: deps.react, singleton: true },
+          "react-dom": {
+            requiredVersion: deps["react-dom"],
+            singleton: true,
+          },
+        },
+      ],
+    }),
     new HtmlWebpackPlugin({
       template: "./public/index.html",
     }),
@@ -34,6 +52,7 @@ module.exports = {
     alias: {
       src: path.resolve(__dirname, "./src"),
       components: path.resolve(__dirname, "src/components/"),
+      state: path.resolve(__dirname, "src/state/"),
     },
   },
 

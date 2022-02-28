@@ -20,6 +20,23 @@ module.exports = {
   },
 
   plugins: [
+    new ModuleFederationPlugin({
+      name: "APP_TWO",
+      filename: "remoteEntry.js",
+      exposes: {
+        "./ButtonTwo": "./src/components/Button/index.jsx",
+      },
+      shared: [
+        {
+          ...deps,
+          react: { requiredVersion: deps.react, singleton: true },
+          "react-dom": {
+            requiredVersion: deps["react-dom"],
+            singleton: true,
+          },
+        },
+      ],
+    }),
     new HtmlWebpackPlugin({
       template: "./public/index.html",
     }),

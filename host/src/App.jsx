@@ -1,5 +1,7 @@
 import { useEffect } from "react";
+import { Provider } from "react-redux";
 import { Welcome } from "components/Welcome";
+import { store } from "state/store";
 import classes from "src/App.module.scss";
 
 export const App = () => {
@@ -8,8 +10,10 @@ export const App = () => {
   }, []);
 
   return (
-    <div className={classes.container}>
-      <Welcome />
-    </div>
+    <Provider store={store}>
+      <div className={classes.container}>
+        <Welcome />
+      </div>
+    </Provider>
   );
 };
