@@ -24,6 +24,7 @@ module.exports = {
       },
       remotes: {
         APP_TWO: "APP_TWO@http://localhost:4002/remoteEntry.js",
+        APP_ONE: "APP_ONE@http://localhost:4001/remoteEntry.js",
       },
       shared: [
         {

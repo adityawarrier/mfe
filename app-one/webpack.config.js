@@ -18,6 +18,9 @@ module.exports = {
     new ModuleFederationPlugin({
       name: "APP_ONE",
       filename: "remoteEntry.js",
+      exposes: {
+        ErrorBoundary: "./src/components/ErrorBoundary/index.js",
+      },
       remotes: {
         HOST: "HOST@http://localhost:4000/remoteEntry.js",
         APP_TWO: "APP_TWO@http://localhost:4002/remoteEntry.js",

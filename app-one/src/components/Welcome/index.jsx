@@ -1,5 +1,6 @@
+import React from "react";
 import { useSelector, useDispatch } from "react-redux";
-import Button from "APP_TWO/ButtonTwo";
+const Button = React.lazy(() => import("APP_TWO/ButtonTwo"));
 import counterActions from "HOST/counterActions";
 
 export const Welcome = () => {

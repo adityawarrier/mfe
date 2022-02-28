@@ -1,6 +1,7 @@
 import { useEffect } from "react";
 import { Welcome } from "components/Welcome";
 import classes from "src/App.module.scss";
+import ErrorBoundary from "components/ErrorBoundary";
 
 export const App = () => {
   useEffect(() => {
@@ -8,8 +9,10 @@ export const App = () => {
   }, []);
 
   return (
-    <div className={classes.container}>
-      <Welcome />
-    </div>
+    <ErrorBoundary>
+      <div className={classes.container}>
+        <Welcome />
+      </div>
+    </ErrorBoundary>
   );
 };

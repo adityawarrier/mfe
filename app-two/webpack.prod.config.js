@@ -26,6 +26,9 @@ module.exports = {
       exposes: {
         "./ButtonTwo": "./src/components/Button/index.jsx",
       },
+      remotes: {
+        APP_ONE: "APP_ONE@http://localhost:4001/remoteEntry.js",
+      },
       shared: [
         {
           ...deps,

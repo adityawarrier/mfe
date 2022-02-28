@@ -1,8 +1,9 @@
-import { useEffect } from "react";
-import { Provider } from 'react-redux';
+import { Suspense, useEffect } from "react";
+import { Provider } from "react-redux";
 import { Welcome } from "components/Welcome";
 import classes from "src/App.module.scss";
 import { store } from "state/store";
+import ErrorBoundary from "components/ErrorBoundary";
 
 export const App = () => {
   useEffect(() => {
@@ -11,9 +12,13 @@ export const App = () => {
 
   return (
     <Provider store={store}>
-      <div className={classes.container}>
-        <Welcome />
-      </div>
+      <ErrorBoundary>
+        <div className={classes.container}>
+          <Suspense fallback={<div>Loading...</div>}>
+            <Welcome />
+          </Suspense>
+        </div>
+      </ErrorBoundary>
     </Provider>
   );
 };
