@@ -1,5 +1,7 @@
 const path = require("path");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
+const ModuleFederationPlugin = require("webpack/lib/container/ModuleFederationPlugin");
+const deps = require("./package.json").dependencies;
 
 module.exports = {
   mode: "development",
@@ -13,6 +15,20 @@ module.exports = {
   },
 
   plugins: [
+    new ModuleFederationPlugin({
+      name: "APP_ONE",
+      filename: "remoteEntry.js",
+      shared: [
+        {
+          ...deps,
+          react: { requiredVersion: deps.react, singleton: true },
+          "react-dom": {
+            requiredVersion: deps["react-dom"],
+            singleton: true,
+          },
+        },
+      ],
+    }),
     new HtmlWebpackPlugin({
       template: "./public/index.html",
     }),
