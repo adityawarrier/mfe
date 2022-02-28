@@ -1,6 +1,6 @@
 import classes from "components/Welcome/Welcome.module.css";
 import React, { Suspense } from "react";
-import ButtonTwo from "APP_TWO/ButtonTwo";
+const ButtonTwo = React.lazy(() => import("APP_TWO/ButtonTwo"));
 import { useSelector } from "react-redux";
 
 export const Welcome = () => {
