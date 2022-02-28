@@ -1,0 +1,35 @@
+{
+  "name": "mfe",
+  "version": "0.0.1",
+  "description": "Module Federation based front-end application",
+  "main": "src/index.js",
+  "scripts": {
+    "clean": "rm -rf dist",
+    "start": "NODE_ENV=development webpack serve --config ./webpack.config.js",
+    "prebuild": "npm run clean",
+    "build": "NODE_ENV=production webpack --config ./webpack.prod.config.js"
+  },
+  "author": "Aditya Warrier",
+  "license": "ISC",
+  "devDependencies": {
+    "@babel/core": "^7.17.5",
+    "@babel/preset-env": "^7.16.11",
+    "@babel/preset-react": "^7.16.7",
+    "babel-loader": "^8.2.3",
+    "css-loader": "^6.6.0",
+    "html-webpack-plugin": "^5.5.0",
+    "mini-css-extract-plugin": "^2.5.3",
+    "sass": "^1.49.9",
+    "sass-loader": "^12.6.0",
+    "style-loader": "^3.3.1",
+    "terser-webpack-plugin": "^5.3.1",
+    "webpack": "^5.69.1",
+    "webpack-cli": "^4.9.2",
+    "webpack-dev-server": "^4.7.4",
+    "webpack-server": "^0.1.2"
+  },
+  "dependencies": {
+    "react": "^17.0.2",
+    "react-dom": "^17.0.2"
+  }
+}
